@@ -79,6 +79,8 @@ def _metal_binary_impl(ctx):
         args.add("-o", air_file)
         args.add("-I./")  # Enable absolute paths
         args.add(src_metal.path)
+        if ctx.var["COMPILATION_MODE"] == "dbg":
+            args.add("-frecord-sources=flat")
 
         apple_support.run(
             actions = ctx.actions,
